@@ -1,0 +1,82 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const projects = await getCollection("projects");
+projects.sort((a, b) => a.data.order - b.data.order);
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Faris Winawan",
+  alternateName: "Muhammad Faris Winawan",
+  url: "https://einggraumfw.github.io/",
+  email: "mailto:fariswinawan@proton.me",
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Institut Teknologi Bandung",
+  },
+  knowsAbout: ["wave energy", "ocean engineering", "ERA5 reanalysis"],
+  sameAs: [
+    "https://github.com/EinggrauMFW",
+    "https://www.linkedin.com/in/fariswinawan",
+  ],
+};
+---
+
+<Base
+  title="Faris Winawan"
+  description="Ocean engineering graduate (ITB). Independent research in wave energy. Projects with how each one was verified and what is still open."
+  path="/"
+  jsonLd={person}
+>
+  <h1 data-type>Faris Winawan</h1>
+  <p>Ocean engineering graduate (ITB, Indonesia). I do independent research in wave energy and write the
+software I need for it. Each project below says what it does, how it was checked, and what is still open.</p>
+
+  <h2>Research direction</h2>
+  <p>Field-data-informed hydrodynamics of self-reacting, weathervaning wave energy converters.</p>
+  <p>The items marked Planned build toward this question. None of them has results yet.</p>
+
+  <h2 id="projects">Projects</h2>
+
+  <div class="filters" role="group" aria-label="Filter by status" hidden>
+    <button type="button" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" data-filter="Verified" aria-pressed="false">Verified</button>
+    <button type="button" data-filter="In progress" aria-pressed="false">In progress</button>
+    <button type="button" data-filter="Planned" aria-pressed="false">Planned</button>
+  </div>
+  <p class="filter-count" aria-live="polite"></p>
+  <table class="projects">
+    <thead>
+      <tr>
+        <th scope="col">Project</th>
+        <th scope="col">Status</th>
+        <th scope="col">What it is</th>
+        <th scope="col">Checked</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        projects.map((project) => (
+          <tr data-status={project.data.status}>
+            <td><a href={`/projects/${project.id}/`}>{project.data.title}</a></td>
+            <td><span class="status">{project.data.status}</span></td>
+            <td>{project.data.summary}</td>
+            <td>{project.data.updated.toISOString().slice(0, 10)}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>Status labels</h2>
+  <dl>
+    <dt><span class="status">Verified</span></dt>
+    <dd>Released or completed; the checks listed on its page pass. The note next to the label gives the scope.</dd>
+    <dt><span class="status">In progress</span></dt>
+    <dd>Work continues, or a key check is still missing.</dd>
+    <dt><span class="status">Planned</span></dt>
+    <dd>Next steps toward the research direction. No results are shown.</dd>
+  </dl>
+</Base>

@@ -1,0 +1,114 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data, id } = entry;
+
+const mdHref = `/projects/${id}.md`;
+const canonicalUrl = new URL(`/projects/${id}/`, Astro.site).href;
+const updatedDateStr = data.updated.toISOString().slice(0, 10);
+
+const jsonLd: Record<string, any> = {
+  "@context": "https://schema.org",
+  "@type": data.repo ? "SoftwareSourceCode" : "CreativeWork",
+  name: data.title,
+  description: data.summary,
+  url: canonicalUrl,
+  author: {
+    "@type": "Person",
+    name: "Faris Winawan",
+    url: "https://einggraumfw.github.io/",
+  },
+  dateModified: data.updated.toISOString(),
+};
+
+if (data.repo) {
+  jsonLd.codeRepository = data.repo;
+}
+if (data.languages && data.languages.length > 0) {
+  jsonLd.programmingLanguage = data.languages;
+}
+if (data.licence) {
+  jsonLd.license = data.licence;
+}
+if (data.release) {
+  jsonLd.version = data.release.tag;
+}
+if (data.doi) {
+  jsonLd.identifier = `https://doi.org/${data.doi}`;
+}
+---
+
+<Base
+  title={data.title}
+  description={data.summary}
+  path={`/projects/${id}/`}
+  mdHref={mdHref}
+  jsonLd={jsonLd}
+>
+  <article>
+    <h1>{data.title}</h1>
+    <p class="summary">{data.summary}</p>
+    <p class="meta">
+      <span class="status">{data.status}</span> {data.statusNote} · checked <time datetime={updatedDateStr}>{updatedDateStr}</time>
+    </p>
+    <Content />
+    <h2>Links</h2>
+    <ul>
+      {
+        data.repo && (
+          <li>
+            Repository: <a href={data.repo}>{data.repo.replace(/^https?:\/\//, "")}</a>
+          </li>
+        )
+      }
+      {!data.sourcePublic && data.status !== "Planned" && <li>Source: not public.</li>}
+      {
+        data.release && (
+          <li>
+            Release: <a href={data.release.url}>{data.release.tag}</a> ({data.release.date.toISOString().slice(0, 10)})
+          </li>
+        )
+      }
+      {
+        data.doi && (
+          <li>
+            DOI: <a href={`https://doi.org/${data.doi}`}>{data.doi}</a>
+          </li>
+        )
+      }
+      <li>This page as Markdown: <a href={mdHref}>{id}.md</a></li>
+    </ul>
+    {
+      (data.languages.length > 0 || data.licence) && (
+        <>
+          <h2>Stack</h2>
+          <p>
+            {data.languages.join(", ")}
+            {data.licence ? `${data.languages.length > 0 ? " · " : ""}licence: ${data.licence}` : ""}
+          </p>
+        </>
+      )
+    }
+    <hr />
+    <p class="meta">
+      Last checked {updatedDateStr}{
+        data.commit && (
+          <>
+            {" "}against commit <a href={data.commit.url}><code>{data.commit.sha.slice(0, 7)}</code></a>
+          </>
+        )
+      }.
+    </p>
+  </article>
+</Base>

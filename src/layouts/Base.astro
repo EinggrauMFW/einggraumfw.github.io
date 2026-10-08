@@ -1,0 +1,59 @@
+---
+import "../styles/site.css";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+  mdHref?: string;
+}
+
+const { title, description, path, jsonLd, mdHref } = Astro.props;
+const pageTitle = title === "Faris Winawan" ? "Faris Winawan" : `${title} · Faris Winawan`;
+const canonicalUrl = new URL(path, Astro.site);
+// ponytail: static nav links cover current site structure; upgrade to data-driven nav if pages expand.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <script is:inline>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Faris Winawan" />
+    {mdHref && <link rel="alternate" type="text/markdown" href={mdHref} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/courier-prime-regular.woff" as="font" type="font/woff" crossorigin />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <script src="/site.js" defer is:inline></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <a href="/" class="site-title">FARIS WINAWAN</a>
+      <nav aria-label="Main">
+        <a href="/#projects" aria-current={path === "/" ? "page" : undefined}>Projects</a> ·
+        <a href="/about/" aria-current={path === "/about/" ? "page" : undefined}>About</a> ·
+        <a href="/contact/" aria-current={path === "/contact/" ? "page" : undefined}>Contact</a> ·
+        <a href="https://github.com/EinggrauMFW">GitHub</a>
+      </nav>
+      <button id="theme-toggle" type="button" hidden></button>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer>
+      <p>Text and figures CC BY 4.0. <a href="https://github.com/EinggrauMFW/einggraumfw.github.io">Code</a> MIT.</p>
+      <p><a href="mailto:fariswinawan@proton.me">fariswinawan@proton.me</a> · <a href="https://github.com/EinggrauMFW">GitHub</a> · <a href="https://www.linkedin.com/in/fariswinawan">LinkedIn</a></p>
+      <p>Machine-readable: <a href="/llms.txt">/llms.txt</a> · <a href="/projects.json">/projects.json</a></p>
+    </footer>
+  </body>
+</html>
