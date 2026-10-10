@@ -1,6 +1,6 @@
 # Facts: OWC learning app
 
-Checked 2026-10-10 against `main` @ `8f9ae15c0cb6d3c9d71927a474da19e0a1029e36` (README test count updated to 66 in that commit).
+Checked 2026-10-10 against `main` @ `119f704fad1c03546caff3684a59aac1427b0369` (adds the README references; release v0.1.0 points to this commit).
 Repo: https://github.com/EinggrauMFW/owc-learning-app (public, created 2026-10-10).
 
 **Sources** (all files at that commit):
@@ -35,3 +35,5 @@ Repo: https://github.com/EinggrauMFW/owc-learning-app (public, created 2026-10-1
 | 16 | Licence MIT (GitHub detects MIT); third-party data and sources in NOTICE; ERA5 under CC BY 4.0 with attribution in data/README.md. | G license.spdx_id = MIT; NOTICE; D |
 | 17 | Built with AI coding assistance: Claude Opus planned, wrote the physics text and derivations, and reviewed and re-ran every check; Claude Haiku and Sonnet subagents wrote code in batches. | S §9 "How it was built" |
 | 18 | Language: Python; requires Python 3.13. | G; R "Licence and data" |
+| 19 | Release v0.1.0 published 2026-10-10 on commit 119f704 (release notes list the verification and known limitations). | G `gh release view v0.1.0` |
+| 20 | README lists the key references with DOIs checked on Crossref (ERA5 and the Scientific Agent Skills paper verified on DataCite and arXiv). | R "References" |

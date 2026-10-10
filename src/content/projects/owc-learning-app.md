@@ -8,9 +8,13 @@ order: 9
 repo: "https://github.com/EinggrauMFW/owc-learning-app"
 languages: ["Python"]
 licence: "MIT"
+release:
+  tag: "v0.1.0"
+  date: 2026-10-10
+  url: "https://github.com/EinggrauMFW/owc-learning-app/releases/tag/v0.1.0"
 commit:
-  sha: "8f9ae15c0cb6d3c9d71927a474da19e0a1029e36"
-  url: "https://github.com/EinggrauMFW/owc-learning-app/commit/8f9ae15c0cb6d3c9d71927a474da19e0a1029e36"
+  sha: "119f704fad1c03546caff3684a59aac1427b0369"
+  url: "https://github.com/EinggrauMFW/owc-learning-app/commit/119f704fad1c03546caff3684a59aac1427b0369"
 verification:
   - "Toy model: every formula derived with SymPy; an independent time-domain simulation matches the power to about 1e-12."
   - "Wall model: three methods for the radiation damping agree to 1.2e-3, and the gap shrinks 5-6x when the truncation doubles."
@@ -95,9 +99,9 @@ python -m venv .venv
 
 On Linux or macOS, use `.venv/bin/python`. Python 3.13.
 
-[^summary]: [SUMMARY_REPORT.md](https://github.com/EinggrauMFW/owc-learning-app/blob/8f9ae15c0cb6d3c9d71927a474da19e0a1029e36/SUMMARY_REPORT.md).
-[^reportb]: [REPORT_B.md](https://github.com/EinggrauMFW/owc-learning-app/blob/8f9ae15c0cb6d3c9d71927a474da19e0a1029e36/REPORT_B.md), rung table and equation log.
-[^verif]: [VERIFICATION.md](https://github.com/EinggrauMFW/owc-learning-app/blob/8f9ae15c0cb6d3c9d71927a474da19e0a1029e36/VERIFICATION.md), sections 2-4.
-[^lit]: [LITERATURE.md](https://github.com/EinggrauMFW/owc-learning-app/blob/8f9ae15c0cb6d3c9d71927a474da19e0a1029e36/LITERATURE.md), "Validation done in this repository" and "What is still missing".
-[^rung3]: [docs/rungs/rung3_indirect.md](https://github.com/EinggrauMFW/owc-learning-app/blob/8f9ae15c0cb6d3c9d71927a474da19e0a1029e36/docs/rungs/rung3_indirect.md).
-[^data]: [data/README.md](https://github.com/EinggrauMFW/owc-learning-app/blob/8f9ae15c0cb6d3c9d71927a474da19e0a1029e36/data/README.md).
+[^summary]: [SUMMARY_REPORT.md](https://github.com/EinggrauMFW/owc-learning-app/blob/119f704fad1c03546caff3684a59aac1427b0369/SUMMARY_REPORT.md).
+[^reportb]: [REPORT_B.md](https://github.com/EinggrauMFW/owc-learning-app/blob/119f704fad1c03546caff3684a59aac1427b0369/REPORT_B.md), rung table and equation log.
+[^verif]: [VERIFICATION.md](https://github.com/EinggrauMFW/owc-learning-app/blob/119f704fad1c03546caff3684a59aac1427b0369/VERIFICATION.md), sections 2-4.
+[^lit]: [LITERATURE.md](https://github.com/EinggrauMFW/owc-learning-app/blob/119f704fad1c03546caff3684a59aac1427b0369/LITERATURE.md), "Validation done in this repository" and "What is still missing".
+[^rung3]: [docs/rungs/rung3_indirect.md](https://github.com/EinggrauMFW/owc-learning-app/blob/119f704fad1c03546caff3684a59aac1427b0369/docs/rungs/rung3_indirect.md).
+[^data]: [data/README.md](https://github.com/EinggrauMFW/owc-learning-app/blob/119f704fad1c03546caff3684a59aac1427b0369/data/README.md).
