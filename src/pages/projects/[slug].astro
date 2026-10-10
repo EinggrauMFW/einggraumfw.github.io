@@ -16,6 +16,8 @@ const { data, id } = entry;
 
 const mdHref = `/projects/${id}.md`;
 const canonicalUrl = new URL(`/projects/${id}/`, Astro.site).href;
+const metaDescription =
+  data.summary.length < 120 ? `${data.summary} Project by Muhammad Faris Winawan, wave energy research.` : data.summary;
 const updatedDateStr = data.updated.toISOString().slice(0, 10);
 
 const jsonLd: Record<string, any> = {
@@ -51,7 +53,7 @@ if (data.doi) {
 
 <Base
   title={data.title}
-  description={data.summary}
+  description={metaDescription}
   path={`/projects/${id}/`}
   mdHref={mdHref}
   jsonLd={jsonLd}

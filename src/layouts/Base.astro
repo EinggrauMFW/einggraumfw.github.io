@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title, description, path, jsonLd, mdHref } = Astro.props;
-const pageTitle = title === "Faris Winawan" ? "Faris Winawan" : `${title} · Faris Winawan`;
+const pageTitle = title.includes("Muhammad Faris Winawan") ? title : `${title} · Muhammad Faris Winawan`;
 const canonicalUrl = new URL(path, Astro.site);
 // ponytail: static nav links cover current site structure; upgrade to data-driven nav if pages expand.
 ---
@@ -24,11 +24,14 @@ const canonicalUrl = new URL(path, Astro.site);
     <script is:inline>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Faris Winawan" />
+    <meta property="og:site_name" content="Muhammad Faris Winawan" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     {mdHref && <link rel="alternate" type="text/markdown" href={mdHref} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/courier-prime-regular.woff" as="font" type="font/woff" crossorigin />

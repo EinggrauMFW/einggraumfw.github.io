@@ -16,3 +16,4 @@
 | 12 | Site licence: text and figures CC BY 4.0; code MIT. | statement by Faris, 2026-10-08 |
 | 13 | Experience: preliminary wave-resource assessment, floating WEC screening, metocean data interpretation, preliminary techno-economic evaluation for island electricity systems. | statement by Faris (LinkedIn About), 2026-10-08 |
 | 14 | Seeking graduate or junior engineer roles in wave energy, offshore wind or marine renewable energy; open to Southeast Asia, Europe, Australia; open to research and engineering collaboration on WECs and ocean renewable energy systems. | statement by Faris (LinkedIn About), 2026-10-08 |
+| 15 | Search name: "Muhammad Faris Winawan". Short role for titles and structured data: "Ocean Engineering graduate, wave energy research". | statement by Faris, 2026-10-10 |
